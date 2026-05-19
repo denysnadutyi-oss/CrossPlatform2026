@@ -15,4 +15,12 @@ public class Test {
     public int getNumber() {
         return number;
     }
+
+    public int sum(int a, int b) {
+        return a + b;
+    }
+
+    public String getText() {
+        return text;
+    }
 }
