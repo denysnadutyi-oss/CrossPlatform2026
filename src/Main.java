@@ -1,83 +1,43 @@
-import java.lang.reflect.Array;
+import java.lang.reflect.Proxy;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("=== ARRAY ===");
+        Calculator calculator =
+                new CalculatorImpl();
 
-        Object intArray =
-                ArrayReflectionUtil.createArray(
-                        int.class,
-                        5
+        Calculator proxyCalculator =
+                (Calculator) Proxy.newProxyInstance(
+
+                        Calculator.class.getClassLoader(),
+
+                        new Class[] { Calculator.class },
+
+                        new MethodProfilerHandler(
+                                calculator
+                        )
                 );
 
-        for (int i = 0; i < 5; i++) {
+        int sum =
+                proxyCalculator.add(5, 3);
 
-            Array.set(intArray, i, i * 10);
-        }
+        int multiply =
+                proxyCalculator.multiply(4, 6);
+
+        double divide =
+                proxyCalculator.divide(10, 2);
+
+        System.out.println("\nFINAL RESULTS:");
+
+        System.out.println("Sum = " + sum);
 
         System.out.println(
-                ArrayReflectionUtil.arrayToString(intArray)
+                "Multiply = " + multiply
         );
 
-        System.out.println("\n=== RESIZED ARRAY ===");
-
-        Object resizedArray =
-                ArrayReflectionUtil.resizeArray(
-                        intArray,
-                        8
-                );
-
         System.out.println(
-                ArrayReflectionUtil.arrayToString(
-                        resizedArray
-                )
-        );
-
-        System.out.println("\n=== MATRIX ===");
-
-        Object matrix =
-                ArrayReflectionUtil.createMatrix(
-                        double.class,
-                        3,
-                        3
-                );
-
-        for (int i = 0; i < 3; i++) {
-
-            for (int j = 0; j < 3; j++) {
-
-                Array.setDouble(
-                        Array.get(matrix, i),
-                        j,
-                        i + j + 0.5
-                );
-            }
-        }
-
-        System.out.println(
-                ArrayReflectionUtil.matrixToString(
-                        matrix
-                )
-        );
-
-        System.out.println("\n=== STRING ARRAY ===");
-
-        Object stringArray =
-                ArrayReflectionUtil.createArray(
-                        String.class,
-                        3
-                );
-
-        Array.set(stringArray, 0, "Java");
-        Array.set(stringArray, 1, "Reflection");
-        Array.set(stringArray, 2, "API");
-
-        System.out.println(
-                ArrayReflectionUtil.arrayToString(
-                        stringArray
-                )
+                "Divide = " + divide
         );
     }
 }
