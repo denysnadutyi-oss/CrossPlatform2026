@@ -10,7 +10,7 @@ public class Main {
         library.addReader(reader1);
         library.rentBook(book1, reader1);
 
-        System.out.println("--- ВЕРСІЯ 2: ПОТОЧНИЙ СТАН СИСТЕМИ ---");
+        System.out.println("--- ВЕРСІЯ 3: ПОТОЧНИЙ СТАН СИСТЕМИ ---");
         System.out.println(library);
 
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("library.dat"))) {
@@ -26,7 +26,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        System.out.println("--- ВЕРСІЯ 2: СТАН ПІСЛЯ ДЕСЕРІАЛІЗАЦІЇ ---");
+        System.out.println("--- ВЕРСІЯ 3: СТАН ПІСЛЯ ДЕСЕРІАЛІЗАЦІЇ ---");
         System.out.println(deserializedLibrary);
     }
 }
