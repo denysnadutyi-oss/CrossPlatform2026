@@ -21,9 +21,9 @@ public class UPDServer {
         try {
             System.out.println("Server start...");
             while (true) {
-                getUserData(bufferSize); // Отримання запиту
-                log(address, port);      // Вивід логу на екран
-                sendUserData();          // Формування та відправка відповіді
+                getUserData(bufferSize);
+                log(address, port);
+                sendUserData();
             }
         } catch (IOException e) {
             System.out.println("Error: " + e);

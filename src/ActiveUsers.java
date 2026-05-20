@@ -4,9 +4,7 @@ import java.util.ArrayList;
 public class ActiveUsers implements Serializable {
     private static final long serialVersionUID = 1L;
     private ArrayList<User> users = new ArrayList<>();
-
     public ActiveUsers() {}
-
     public void add(User u) { users.add(u); }
     public boolean isEmpty() { return users.isEmpty(); }
     public int size() { return users.size(); }
